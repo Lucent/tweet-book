@@ -16,7 +16,7 @@ usort($tweets, "time_sort");
 <?php
 $count = 0;
 $last_monthyear = 0;
-foreach ($tweets as $tweet) {
+foreach ($tweets as $index=>$tweet) {
 	if ($tweet["id_str"] === "182498183463714817") continue; // taylor hacking
 	$date = strtotime($tweet["created_at"]);
 	if (!in_array(date("Y", $date), $years)) continue;
@@ -28,7 +28,7 @@ foreach ($tweets as $tweet) {
 		$last_monthyear = $tweet_monthyear;
 	}
 	echo "
- <section>
+ <section id='count-{$index}'>
   <header>
    <div>
     <img class='Icon' src='icon-lucent.jpg'>
@@ -48,6 +48,11 @@ if ($tweet["geo"])
 ?>
  </main>
  </body>
+ <script>
+window.onload = function() {
+	document.getElementById("count-0").parentNode.style.columnCount = 1;
+};
+ </script>
 </html>
 
 <?php

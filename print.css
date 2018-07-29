@@ -1,6 +1,17 @@
-@page	{ size: 6in 9in; }
+@page	{
+	size: 6.25in 9.25in;
+/*	margin-top: calc(0.5in + 0.125in);*/
+	@bottom-left-corner {
+		content: "Page " counter(page);
+	}
+}
 @page :left	{ margin-left: 3cm; }
 @page :right{ margin-right: 3cm; }
+:root {
+	--outside-margin:	calc(0.5in + 0.125in);
+	--inside-margin:	1rem;
+	--inside-half:		0.5rem;
+}
 
 main	{ page-break-before: avoid; break-before: avoid; }
 h1		{ page-break-after: avoid; break-after: avoid; page-break-before: always; }
@@ -8,10 +19,11 @@ h1:first-child	{ page-break-before: auto; }
 section	{ page-break-inside: avoid; break-inside: avoid; }
 section, h1, main { box-decoration-break: clone; }
 
-body	{ background-color: #f5f8fa; background-image: url("flourish.svg"); background-repeat: repeat-y; background-size: 100%; color: black; font-family: "Helvetica Neue"; margin: 0 1rem; -webkit-print-color-adjust: exact; color-adjust: exact; font-size: 0.5em; padding: 0; }
-main	{ column-count: 2; column-gap: 1rem; }
-section	{ border-radius: 0.5em; padding: 1.5em; margin: 1rem 0; background-color: white; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); box-sizing: border-box; display: flex; flex-direction: column; }
-h1		{ margin: 0.5rem 0.5rem 0; padding: 0.7em; border-bottom: thin solid rgb(101, 119, 134); font-size: 3em; }
+html	{ background-origin: border-box; background-color: #f5f8fa; background-image: url("flourish.svg"); background-repeat: repeat-y; background-size: 100%; color: black; font-family: "Helvetica Neue"; -webkit-print-color-adjust: exact; color-adjust: exact; }
+body	{ margin: 0 var(--outside-margin); font-size: 0.5em; }
+main	{ column-count: 2; column-gap: var(--inside-margin); }
+section	{ border-radius: 0.5em; padding: 1.5em; margin: var(--inside-margin) 0; background-color: white; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); box-sizing: border-box; display: flex; flex-direction: column; }
+h1		{ margin: var(--inside-half) var(--inside-half) 0; padding: 0.7em; border-bottom: thin solid rgb(101, 119, 134); font-size: 3em; }
 h3, h4	{ margin: 0; font-size: 1.2em; }
 h4		{ font-size: 1em; }
 h4, p > span, time, em, p ~ img path	{ color: rgb(101, 119, 134); }
@@ -27,3 +39,5 @@ footer > img	{ height: 1em; }
 img + img, em + img	{ margin-left: 2em; }
 em		{ font-style: normal; margin-left: 0.5em; line-height: 1; }
 time	{ flex-grow: 1; text-align: right; }
+
+#count-0{ font-size: 1rem; }
