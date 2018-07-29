@@ -1,18 +1,25 @@
 <?php
 $years = explode(",", $_GET["years"]);
+$pages = $_GET["pages"];
 date_default_timezone_set("America/New_York");
 $json = file_get_contents("tweet.js");
 $tweets = json_decode($json, true);
 usort($tweets, "time_sort");
-//print_r($tweets[31]);
+//print_r($tweets[89]);
 ?>
 <!doctype html>
-<html>
+<html class="<?= $pages ?>">
  <head>
   <link href="print.css" rel="stylesheet">
   <title>Printable Tweets Ready for Book</title>
  </head>
  <body>
+  <article>
+  <h1>Tweets</h1>
+  <h1>2012–2014</h1>
+  <nav>by</nav>
+  <h2>@Lucent</h2>
+  </article>
 <?php
 $count = 0;
 $last_monthyear = 0;
@@ -23,8 +30,8 @@ foreach ($tweets as $index=>$tweet) {
 	$tweet_monthyear = date("F Y", $date);
 	if ($tweet_monthyear !== $last_monthyear) {
 		$count++;
-		if ($count !== 1) echo "</main>\n";
-		echo "<h1>{$tweet_monthyear}</h1>\n<main>";
+		if ($count !== 1) echo "</main></td></tr></tbody></table>\n";
+		echo "<table><thead><tr><th><h1>{$tweet_monthyear}</h1></th></tr></thead><tfoot><tr><td></td></tr></tfoot><tbody><tr><td><main>";
 		$last_monthyear = $tweet_monthyear;
 	}
 	echo "
@@ -38,15 +45,18 @@ foreach ($tweets as $index=>$tweet) {
   </header>
   <p>";
 	echo format_tweet($tweet["full_text"]);
-if ($tweet["geo"])
-	echo "<span> – ", $tweet["geo"], "</span>";
+//	if ($tweet["geo"])
+//		print_r($tweet["geo"]);
+//		//echo "<span> – ", $tweet["geo"], "</span>";
 	echo "</p>
   <footer><img src='convo.svg'><em></em><img src='retweet.svg'><em>", format_int($tweet["retweet_count"]), "</em><img src='like.svg'><em>", format_int($tweet["favorite_count"]), "</em><img src='mail.svg'><em> </em>
   <time>", format_time($tweet["created_at"]), "</time></footer>
  </section>\n";
 }
 ?>
- </main>
+</main></td></tr>
+ </tbody>
+ </table>
  </body>
  <script>
 window.onload = function() {
