@@ -3,7 +3,7 @@ $years = explode(",", $_GET["years"]);
 date_default_timezone_set("America/New_York");
 $json = file_get_contents("tweet.js");
 $tweets = json_decode($json, true);
-$tweets = array_reverse($tweets);
+usort($tweets, "time_sort");
 //print_r($tweets[31]);
 ?>
 <!doctype html>
@@ -14,27 +14,26 @@ $tweets = array_reverse($tweets);
  </head>
  <body>
 <?php
-$limiter = 0;
+$count = 0;
 $last_monthyear = 0;
 foreach ($tweets as $tweet) {
-//	if ($limiter++ > 20) exit;
 	if ($tweet["id_str"] === "182498183463714817") continue; // taylor hacking
 	$date = strtotime($tweet["created_at"]);
 	if (!in_array(date("Y", $date), $years)) continue;
 	$tweet_monthyear = date("F Y", $date);
 	if ($tweet_monthyear !== $last_monthyear) {
-		echo "</main><h1>{$tweet_monthyear}</h1>\n<main>";
+		$count++;
+		if ($count !== 1) echo "</main>\n";
+		echo "<h1>{$tweet_monthyear}</h1>\n<main>";
 		$last_monthyear = $tweet_monthyear;
 	}
 	echo "
  <section>
   <header>
-   <table>
-    <tr>
-     <td><img class='Icon' src='icon-lucent.jpg'></td>
-     <td><h3>Lucent</h3><h4>@Lucent</h4></td>
-    </tr>
-   </table>
+   <div>
+    <img class='Icon' src='icon-lucent.jpg'>
+    <aside><h3>Lucent</h3><h4>@Lucent</h4></aside>
+   </div>
    <img src='twitter.svg' class='Logo'>
   </header>
   <p>";
@@ -65,4 +64,8 @@ function format_int($number) {
 		return round($number);
 	else
 		return " ";
+}
+
+function time_sort($a, $b) {
+	return strtotime($a["created_at"]) > strtotime($b["created_at"]);
 }
