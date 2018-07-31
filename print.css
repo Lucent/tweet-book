@@ -20,15 +20,16 @@ section	{ page-break-inside: avoid; break-inside: avoid; }
 section	{ box-decoration-break: clone; }
 th		{ text-align: left; }
 
-html	{ background-origin: border-box; background-color: #f5f8fa; background-image: url("flourish.svg"); background-repeat: repeat-y; background-size: 100%; color: black; font-family: "Helvetica Neue"; -webkit-print-color-adjust: exact; color-adjust: exact; }
+html	{ color: black; background-color: #f5f8fa; font-family: "Helvetica Neue"; -webkit-print-color-adjust: exact; color-adjust: exact; }
+.noraster body	{ background-origin: border-box; background-image: url("flourish.svg"); background-repeat: repeat-y; background-size: 100%; /* can't use, rasterizes */ }
 body	{ margin: 0 var(--side); font-size: 0.5em; }
 main	{ column-count: 2; column-gap: var(--inside-margin); }
-section	{ border-radius: 0.5em; padding: 1.5em; margin: var(--inside-margin) 0; background-color: white; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); box-sizing: border-box; display: flex; flex-direction: column; }
+section	{ background-color: white; border-radius: 0.5em; padding: 1.5em; margin: var(--inside-margin) 0; background-color: white; no-rasterized-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); box-sizing: border-box; display: flex; flex-direction: column; border: thin solid #eee; }
 table h1		{ margin: var(--top) var(--inside-half) 0; padding: 0 0.7em 0.7em; border-bottom: thin solid rgb(101, 119, 134); font-size: 3em; }
 .odd table h1	{ text-align: right; }
 .even table h1	{ text-align: left; }
-.odd body	{ margin-left: calc(var(--top) + var(--gutter)); }
-.even body	{ margin-right: calc(var(--top) + var(--gutter)); }
+.odd body	{ margin-left: calc(var(--side) + var(--gutter)); }
+.even body	{ margin-right: calc(var(--side) + var(--gutter)); }
 h3, h4	{ margin: 0; font-size: 1.2em; }
 h4		{ font-size: 1em; }
 h4, p > span, time, em, p ~ img path	{ color: rgb(101, 119, 134); }

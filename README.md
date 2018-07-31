@@ -5,3 +5,11 @@ Firefox about:config
 Print US Trade paperback size in XPS
 put CollatePages.js in %APPDATA%\Adobe\Acrobat\Privileged\DC\JavaScripts
 Tools, Add-ons, Add-on Tools, Collate
+
+Showstoppers
+All browsers: rasterized background SVG
+Chrome: box-overflow clone fails on flex
+Firefox: @page :left and :right nonexistant, everything rasterized on Windows
+Edge: Can't print backgrounds at all
+
+OS X Firefox doesn't rasterize

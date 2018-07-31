@@ -14,9 +14,11 @@ usort($tweets, "time_sort");
   <title>Printable Tweets Ready for Book</title>
  </head>
  <body>
+  <img src="flourish.svg" style="width: 100%; position: fixed; z-index: -1; left: 0;">
+  <img src="flourish.svg" style="width: 100%; position: fixed; z-index: -1; left: 0; top: 100vw;">
   <article>
   <h1>Tweets</h1>
-  <h1>2012–2014</h1>
+  <h1><?= $years[0] . "–" . end($years) ?></h1>
   <nav>by</nav>
   <h2>@Lucent</h2>
   </article>
