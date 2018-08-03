@@ -1,51 +1,58 @@
 @page	{
 	size: 6.25in 9.25in;
-	@bottom-left-corner {
-		content: "Page " counter(page);
-	}
 }
 @page :left	{ margin-left: 3cm; }
 @page :right{ margin-right: 3cm; }
 :root {
 	--gutter:			0.3in;
-	--top:				calc(0.5in + 0.125in);
-	--side:				0.5in;
+	--bleed:			0.125in;
+	--margin:			0.5in;
+	--pagenumber:		0.4in;
 	--inside-margin:	1rem;
-	--inside-half:		0.5rem;
+	--inside-half:		calc(var(--inside-margin) / 2);
 }
+
+html		{ margin: 0 var(--bleed); } /* this can handle left-right bleed, but not top-bottom */
+body		{ margin: 0; padding: 0 var(--margin); }
+.odd body	{ margin-left: var(--gutter); }
+.even body	{ margin-right: var(--gutter); }
+thead h1	{ margin: calc(var(--margin) + var(--bleed)) var(--inside-half) 0; padding: 0 0.7em 0.7em; }
+tfoot td	{ height: calc(var(--margin) + var(--bleed) - var(--inside-margin)); }
+
 table, tr, th, td, thead, tbody, tfoot	{ margin: 0; padding: 0; border: 0; }
+*		{ -webkit-print-color-adjust: exact; color-adjust: exact; }
 
 table	{ page-break-after: avoid; break-after: avoid; page-break-before: always; }
 section	{ page-break-inside: avoid; break-inside: avoid; }
 section	{ box-decoration-break: clone; }
-th		{ text-align: left; }
 
-html	{ color: black; background-color: #f5f8fa; font-family: "Helvetica Neue"; -webkit-print-color-adjust: exact; color-adjust: exact; }
-.noraster body	{ background-origin: border-box; background-image: url("flourish.svg"); background-repeat: repeat-y; background-size: 100%; /* can't use, rasterizes */ }
-body	{ margin: 0 var(--side); font-size: 0.5em; }
+th		{ text-align: left; }
+html	{ color: black; background-color: #f5f8fa; font-family: "Helvetica Neue"; }
+body	{ font-size: 0.5em; }
 main	{ column-count: 2; column-gap: var(--inside-margin); }
-section	{ background-color: white; border-radius: 0.5em; padding: 1.5em; margin: var(--inside-margin) 0; background-color: white; no-rasterized-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); box-sizing: border-box; display: flex; flex-direction: column; border: thin solid #eee; }
-table h1		{ margin: var(--top) var(--inside-half) 0; padding: 0 0.7em 0.7em; border-bottom: thin solid rgb(101, 119, 134); font-size: 3em; }
+section	{ background-color: white; border-radius: 0.5em; padding: 1.5em; margin: var(--inside-margin) 0; background-color: white; no-rasterized-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); box-sizing: border-box; display: flex; flex-direction: column; border: thin solid rgb(227, 236, 232); }
+table h1{ padding: 0 0.7em 0.7em; border-bottom: thin solid rgb(101, 119, 134); font-size: 3em; }
+
 .odd table h1	{ text-align: right; }
 .even table h1	{ text-align: left; }
-.odd body	{ margin-left: calc(var(--side) + var(--gutter)); }
-.even body	{ margin-right: calc(var(--side) + var(--gutter)); }
+.odd body > footer	{ right: var(--pagenumber); }
+.even body > footer	{ left: var(--pagenumber); }
 h3, h4	{ margin: 0; font-size: 1.2em; }
 h4		{ font-size: 1em; }
 h4, p > span, time, em, p ~ img path	{ color: rgb(101, 119, 134); }
-h4, time{ font-family: "Helvetica Neue"; font-weight: normal; }
+h4, time{ font-weight: normal; }
 .Icon	{ object-fit: cover; border-radius: 50%; height: 3em; margin-right: 0.5em; }
 .Icon, .Logo	{ height: 3em; }
 p		{ font-size: 1.5em; letter-spacing: -0.02em; margin: 0.8em 0; }
 header	{ display: flex; justify-content: space-between; }
 div		{ display: flex; align-items: center; }
+
 .Logo	{ height: 3em; }
-footer	{ flex-grow: 1; display: flex; align-items: flex-end; justify-content: space-between; line-height: 1; }
-footer > img	{ height: 1em; }
-img + img, em + img	{ margin-left: 1.5em; }
+section footer	{ flex-grow: 1; display: flex; align-items: flex-end; justify-content: space-between; line-height: 1; }
+section footer > img	{ height: 1em; }
+main img + img, em + img	{ margin-left: 1.5em; }
 em		{ font-style: normal; margin-left: 0.5em; }
 time	{ flex-grow: 1; text-align: right; }
-tfoot td	{ height: calc(var(--top) - var(--inside-margin)); }
 table	{ width: 100%; }
 
 article	{ display: flex; flex-direction: column; justify-content: center; height: 99vh; text-align: center; font-family: "Palatino Linotype"; }
@@ -54,5 +61,12 @@ article > h1	{ font-size: 9em; text-transform: uppercase; letter-spacing: 0.3em;
 article > h1 + h1	{ font-size: 7em; }
 article > nav	{ font-size: 4em; margin-top: 20vh; }
 article > h2	{ font-size: 6em; }
+
+body > footer	{ position: fixed; bottom: var(--pagenumber); font-size: 0.8rem; }
+body	{ counter-reset: page -1; }
+body > footer::after	{ counter-increment: page; content: counter(page); }
+
+.Flourish	{ width: calc(100% - 2 * var(--bleed)); position: fixed; z-index: -1; left: var(--bleed); top: var(--bleed); }
+.Flourish + .Flourish	{ top: calc(100vw - var(--bleed)); }
 
 #count-0{ font-size: 1rem; }

@@ -3,6 +3,7 @@
     <style>
       .cls-1, .cls-2, .cls-3, .cls-4 {
 		fill: rgba(154,190,159, 0.2);
+		fill: rgba(227, 236, 232, 1);
       }
     </style>
   </defs>

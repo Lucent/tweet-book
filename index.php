@@ -14,11 +14,11 @@ usort($tweets, "time_sort");
   <title>Printable Tweets Ready for Book</title>
  </head>
  <body>
-  <img src="flourish.svg" style="width: 100%; position: fixed; z-index: -1; left: 0;">
-  <img src="flourish.svg" style="width: 100%; position: fixed; z-index: -1; left: 0; top: 100vw;">
+  <img class="Flourish" src="flourish.svg">
+  <img class="Flourish" src="flourish.svg">
   <article>
   <h1>Tweets</h1>
-  <h1><?= $years[0] . "–" . end($years) ?></h1>
+  <h1><?= ($years[0] == "2007" ? "2012" : $years[0]) . "–" . end($years) ?></h1>
   <nav>by</nav>
   <h2>@Lucent</h2>
   </article>
@@ -59,6 +59,7 @@ foreach ($tweets as $index=>$tweet) {
 </main></td></tr>
  </tbody>
  </table>
+ <footer></footer>
  </body>
  <script>
 window.onload = function() {
