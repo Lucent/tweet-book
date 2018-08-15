@@ -30,7 +30,7 @@ th		{ text-align: left; }
 html	{ color: black; background-color: #f5f8fa; font-family: "Helvetica Neue"; }
 body	{ font-size: 0.5em; }
 main	{ column-count: 2; column-gap: var(--inside-margin); }
-section	{ background-color: white; border-radius: 0.5em; padding: 1.5em; margin: var(--inside-margin) 0; background-color: white; no-rasterized-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); box-sizing: border-box; display: flex; flex-direction: column; border: thin solid rgb(227, 236, 232); }
+section	{ background-color: white; border-radius: 0.5em; padding: 1.5em; margin: var(--inside-margin) 0; background-color: white; no-rasterized-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); box-sizing: border-box; display: flex; flex-direction: column; border: 1pt solid rgb(227, 236, 232); }
 table h1{ padding: 0 0.7em 0.7em; border-bottom: thin solid rgb(101, 119, 134); font-size: 3em; }
 
 .odd table h1	{ text-align: right; }

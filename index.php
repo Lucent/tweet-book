@@ -5,7 +5,7 @@ date_default_timezone_set("America/New_York");
 $json = file_get_contents("tweet.js");
 $tweets = json_decode($json, true);
 usort($tweets, "time_sort");
-//print_r($tweets[89]);
+//print_r($tweets[89]["display_text_range"][1]);
 ?>
 <!doctype html>
 <html class="<?= $pages ?>">
@@ -14,8 +14,8 @@ usort($tweets, "time_sort");
   <title>Printable Tweets Ready for Book</title>
  </head>
  <body>
-  <img class="Flourish" src="flourish.svg">
-  <img class="Flourish" src="flourish.svg">
+  <img class="Flourish" src="image/flourish.svg">
+  <img class="Flourish" src="image/flourish.svg">
   <article>
   <h1>Tweets</h1>
   <h1><?= ($years[0] == "2007" ? "2012" : $years[0]) . "–" . end($years) ?></h1>
@@ -40,18 +40,22 @@ foreach ($tweets as $index=>$tweet) {
  <section id='count-{$index}'>
   <header>
    <div>
-    <img class='Icon' src='icon-lucent.jpg'>
+    <img class='Icon' src='user-icon.jpg'>
     <aside><h3>Lucent</h3><h4>@Lucent</h4></aside>
    </div>
-   <img src='twitter.svg' class='Logo'>
+   <img src='image/twitter.svg' class='Logo'>
   </header>
   <p>";
 	echo format_tweet($tweet["full_text"]);
+//	if (mb_strlen(html_entity_decode($tweet["full_text"])) > 140) {
+//		echo "MAXED OUT:";
+//		print_r($tweet);
+//	}
 //	if ($tweet["geo"])
 //		print_r($tweet["geo"]);
 //		//echo "<span> – ", $tweet["geo"], "</span>";
 	echo "</p>
-  <footer><img src='convo.svg'><em></em><img src='retweet.svg'><em>", format_int($tweet["retweet_count"]), "</em><img src='like.svg'><em>", format_int($tweet["favorite_count"]), "</em><img src='mail.svg'><em> </em>
+  <footer><img src='image/convo.svg'><em></em><img src='image/retweet.svg'><em>", format_int($tweet["retweet_count"]), "</em><img src='image/like.svg'><em>", format_int($tweet["favorite_count"]), "</em><img src='image/mail.svg'><em> </em>
   <time>", format_time($tweet["created_at"]), "</time></footer>
  </section>\n";
 }

@@ -1,4 +1,4 @@
-Firefox
+Firefox (not MacOS, can't get 0 margins)
 	File
 		Page Setup
 			Format & Options: Print Background (colors & images) [or non-black text like time will be in black]
@@ -12,7 +12,7 @@ Firefox
 
 	File
 		Print
-			Adobe PDF, Trade paperback, Press Quality (for nice user icon)
+			Adobe PDF, Trade paperback, Press Quality (for higher user icon DPI)
 			odd.pdf
 		
 	about:config
@@ -36,7 +36,7 @@ Acrobat DC
 	Inspect with View, Page Display, Two Page Scrolling & Show Cover Page in Two Page View
 	Confirm gutter is bigger in the middle than outside
 
-	Remove Page 0 from Title
+	Remove Page number 0 from Title
 
 	Set Deeper black, 270%? Figure out bleed/margin/padding and svg img alignment and 100% width to stay out of bleed
 
