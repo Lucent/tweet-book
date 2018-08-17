@@ -37,21 +37,21 @@ table h1{ padding: 0 0.7em 0.7em; border-bottom: thin solid rgb(101, 119, 134); 
 .even table h1	{ text-align: left; }
 .odd body > footer	{ right: var(--pagenumber); }
 .even body > footer	{ left: var(--pagenumber); }
-h3, h4	{ margin: 0; font-size: 1.2em; }
-h4		{ font-size: 1em; }
-h4, p > span, time, em, p ~ img path	{ color: rgb(101, 119, 134); }
+h3, h4	{ margin: 0; font-size: 1.3em; }
+h4		{ font-size: 1.1em; }
+h4, p > span, time, em, p ~ img path	{ color: hsla(207, 14%, 33%, 1); }
 h4, time{ font-weight: normal; }
 .Icon	{ object-fit: cover; border-radius: 50%; height: 3em; margin-right: 0.5em; }
 .Icon, .Logo	{ height: 3em; }
-p		{ font-size: 1.5em; letter-spacing: -0.02em; margin: 0.8em 0; }
+p		{ font-size: 1.7em; letter-spacing: -0.02em; margin: 0.8em 0; }
 header	{ display: flex; justify-content: space-between; }
 div		{ display: flex; align-items: center; }
 
 .Logo	{ height: 3em; }
-section footer	{ flex-grow: 1; display: flex; align-items: flex-end; justify-content: space-between; line-height: 1; }
-section footer > img	{ height: 1em; }
-main img + img, em + img	{ margin-left: 1.5em; }
-em		{ font-style: normal; margin-left: 0.5em; }
+section footer	{ flex-grow: 1; display: flex; align-items: flex-end; justify-content: space-between; line-height: 1; font-size: 1.2em; }
+section footer > img	{ height: 0.9em; }
+main img + img, em + img	{ margin-left: 1.2em; }
+em		{ font-style: normal; margin-left: 0.3em; }
 time	{ flex-grow: 1; text-align: right; }
 table	{ width: 100%; }
 

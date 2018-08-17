@@ -55,7 +55,7 @@ foreach ($tweets as $index=>$tweet) {
 //		print_r($tweet["geo"]);
 //		//echo "<span> – ", $tweet["geo"], "</span>";
 	echo "</p>
-  <footer><img src='image/convo.svg'><em></em><img src='image/retweet.svg'><em>", format_int($tweet["retweet_count"]), "</em><img src='image/like.svg'><em>", format_int($tweet["favorite_count"]), "</em><img src='image/mail.svg'><em> </em>
+  <footer><img src='image/convo.svg'><em></em><img src='image/retweet.svg'><em>", format_int($tweet["retweet_count"]), "</em><img src='image/like.svg'><em>", format_int($tweet["favorite_count"]), "</em><!-- <img src='image/mail.svg'><em> </em> -->
   <time>", format_time($tweet["created_at"]), "</time></footer>
  </section>\n";
 }
