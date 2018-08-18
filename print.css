@@ -6,10 +6,12 @@
 :root {
 	--gutter:			0.3in;
 	--bleed:			0.125in;
-	--margin:			0.5in;
+	--margin:			0.4in;
 	--pagenumber:		0.4in;
 	--inside-margin:	1rem;
 	--inside-half:		calc(var(--inside-margin) / 2);
+	--edge-top:			8.2em;
+	--edge-year:		6em;
 }
 
 html		{ margin: 0 var(--bleed); } /* this can handle left-right bleed, but not top-bottom */
@@ -63,8 +65,9 @@ article > nav	{ font-size: 4em; margin-top: 20vh; }
 article > h2	{ font-size: 6em; }
 
 body > footer	{ position: fixed; bottom: var(--pagenumber); font-size: 0.8rem; }
-body	{ counter-reset: page -1; }
+body	{ counter-reset: page -1; counter-reset: year 2012; }
 body > footer::after	{ counter-increment: page; content: counter(page); }
+abbr::after		{ position: fixed; right: 0; top: calc(var(--edge-top) + var(--edge-year) * counter(idx)); border: thin solid black; font-size: 2em; color: white; background-color: #bdcabd; padding: 0.4em 0.2em; height: var(--edge-year); writing-mode: vertical-rl; content: counter(year); letter-spacing: 0.5em; }
 
 .Flourish	{ width: calc(100% - 2 * var(--bleed)); position: fixed; z-index: -1; left: var(--bleed); top: var(--bleed); }
 .Flourish + .Flourish	{ top: calc(100vw - var(--bleed)); }

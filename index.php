@@ -33,7 +33,9 @@ foreach ($tweets as $index=>$tweet) {
 	if ($tweet_monthyear !== $last_monthyear) {
 		$count++;
 		if ($count !== 1) echo "</main></td></tr></tbody></table>\n";
-		echo "<table><thead><tr><th><h1>{$tweet_monthyear}</h1></th></tr></thead><tfoot><tr><td></td></tr></tfoot><tbody><tr><td><main>";
+		$tweet_year = date("Y", $date);
+		$idx = array_search($tweet_year, $years);
+		echo "<table><thead><tr><th><h1>{$tweet_monthyear}</h1></th></tr></thead><tfoot><tr><td style='counter-reset: idx {$idx}; counter-reset: year {$tweet_year}'></td></tr></tfoot><tbody><tr><td><main>";
 		$last_monthyear = $tweet_monthyear;
 	}
 	echo "
@@ -64,6 +66,7 @@ foreach ($tweets as $index=>$tweet) {
  </tbody>
  </table>
  <footer></footer>
+<!-- <abbr></abbr> -->
  </body>
  <script>
 window.onload = function() {
@@ -74,6 +77,10 @@ window.onload = function() {
 
 <?php
 function format_tweet($text) {
+	$text = nl2br($text);
+//$text = "test #213 #hashtag #meowzor'nt";
+//	preg_match_all($hash_pattern, $text, $matches);
+//	print_r($matches);
 	return nl2br($text);
 }
 
