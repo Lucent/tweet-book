@@ -30,7 +30,7 @@ section	{ page-break-inside: avoid; break-inside: avoid; }
 section	{ box-decoration-break: clone; }
 
 th		{ text-align: left; }
-html	{ color: black; background-color: #f5f8fa; font-family: "Helvetica Neue"; }
+html	{ color: black; font-family: "Helvetica Neue"; }
 body	{ font-size: 0.5em; }
 main	{ column-count: 2; column-gap: var(--inside-margin); }
 section	{ background-color: white; border-radius: 0.5em; padding: 1.5em; margin: var(--inside-margin) 0; background-color: white; no-rasterized-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); box-sizing: border-box; display: flex; flex-direction: column; border: 1pt solid rgb(227, 236, 232); }
@@ -69,6 +69,13 @@ body > footer	{ position: fixed; bottom: var(--pagenumber); font-size: 0.8rem; }
 body	{ counter-reset: page -1; counter-reset: year 2012; }
 body > footer::after	{ counter-increment: page; content: counter(page); }
 abbr::after		{ position: fixed; right: 0; top: calc(var(--edge-top) + var(--edge-year) * counter(idx)); border: thin solid black; font-size: 2em; color: white; background-color: #bdcabd; padding: 0.4em 0.2em; height: var(--edge-year); writing-mode: vertical-rl; content: counter(year); letter-spacing: 0.5em; }
+
+.green				{ background-color: hsl(204deg, 33%, 97%); } /** go 100% hue degree variables with subtraction shift */
+.green .Flourish	{ fill: hsl(153deg, 19.1%, 90.8%); }
+.red				{ background-color: hsl(0deg, 33%, 97%); }
+.red .Flourish		{ fill: hsl(0deg, 19.1%, 90.8%); }
+.blue				{ background-color: hsl(240deg, 33%, 97%); }
+.blue .Flourish		{ fill: hsl(240deg, 19.1%, 90.8%); }
 
 .Flourish	{ width: calc(100% - 2 * var(--bleed)); position: fixed; z-index: -1; left: var(--bleed); top: var(--bleed); }
 .Flourish + .Flourish	{ top: calc(100vw - var(--bleed)); }

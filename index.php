@@ -1,6 +1,7 @@
 <?php
 $years = explode(",", $_GET["years"]);
 $user = $_GET["user"];
+$color = $_GET["color"];
 $export_folder = "user-exports/{$user}";
 $icon_url = glob($export_folder . "/profile_media/*.jpg")[0];
 $pages = $_GET["pages"];
@@ -13,7 +14,7 @@ usort($tweets, "time_sort");
 //print_r($tweets[89]["display_text_range"][1]);
 ?>
 <!doctype html>
-<html class="<?= $pages ?>">
+<html class="<?= $pages ?> <?= $color ?>">
  <head>
   <link href="print.css" rel="stylesheet">
   <title>Printable Tweets Ready for Book</title>
@@ -39,8 +40,12 @@ usort($tweets, "time_sort");
    <path id="Like" d="M6.61,12.45h0C4.91,12.42,0,8,0,3.79A3.77,3.77,0,0,1,3.56,0,3.83,3.83,0,0,1,6.61,1.8,3.86,3.86,0,0,1,9.67,0a3.77,3.77,0,0,1,3.56,3.79c0,4.2-4.91,8.63-6.61,8.66ZM3.56,1A2.76,2.76,0,0,0,1,3.79c0,3.78,4.63,7.63,5.62,7.67s5.63-3.89,5.63-7.67A2.76,2.76,0,0,0,9.67,1C8,1,7.08,2.92,7.07,2.94a.51.51,0,0,1-.91,0S5.22,1,3.56,1Z"/>
   </svg>
 
-  <img class="Flourish" src="image/flourish.svg">
-  <img class="Flourish" src="image/flourish.svg">
+  <svg class="Flourish" viewBox="0 0 1135.98 1167.16">
+   <use href="image/flourish.svg#Flourish"/>
+  </svg>
+  <svg class="Flourish" viewBox="0 0 1135.98 1167.16">
+   <use href="image/flourish.svg#Flourish"/>
+  </svg>
   <article>
   <h1>Tweets</h1>
   <h1><?= ($years[0] == "2007" ? "2012" : $years[0]) . "–" . end($years) ?></h1>
@@ -70,7 +75,7 @@ foreach ($tweets as $index=>$tweet) {
     <img class='Icon' src='{$icon_url}'>
     <aside><h3>Lucent</h3><h4>@Lucent</h4></aside>
    </div>
-   <svg class='Logo' viewBox='0 0 400 400'><use xlink:href='#TwitterLogo'></svg>
+   <svg class='Logo' viewBox='0 0 400 400'><use href='#TwitterLogo'/></svg>
   </header>
   <p>";
 	echo format_tweet($tweet["full_text"]);
@@ -83,10 +88,10 @@ foreach ($tweets as $index=>$tweet) {
 //		//echo "<span> – ", $tweet["geo"], "</span>";
 	echo "</p>
   <footer>
-   <svg viewBox='0 0 13 13'><use xlink:href='#Convo'></svg><em></em>
-   <svg viewBox='0 0 17.1 11.45'><use xlink:href='#Retweet'></svg><em>", format_int($tweet["retweet_count"]), "</em>
-   <svg viewBox='0 0 13.23 12.45'><use xlink:href='#Like'></svg><em>", format_int($tweet["favorite_count"]), "</em>
-   <!-- <svg viewBox='0 0 13.16 11.93'><use xlink:href='#Mail'></svg><em> </em> -->
+   <svg viewBox='0 0 13 13'><use href='#Convo'/></svg><em></em>
+   <svg viewBox='0 0 17.1 11.45'><use href='#Retweet'/></svg><em>", format_int($tweet["retweet_count"]), "</em>
+   <svg viewBox='0 0 13.23 12.45'><use href='#Like'/></svg><em>", format_int($tweet["favorite_count"]), "</em>
+   <!-- <svg viewBox='0 0 13.16 11.93'><use href='#Mail'/></svg><em> </em> -->
    <time>", format_time($tweet["created_at"]), "</time>
   </footer>
  </section>\n";
