@@ -13,7 +13,8 @@
 	--edge-top:			8.2em;
 	--edge-year:		6em;
 }
-
+a, a:visited, #TwitterLogo	{ color: #1da1f2; text-decoration: none; fill: currentColor; }
+.template	{ display: none; }
 html		{ margin: 0 var(--bleed); } /* this can handle left-right bleed, but not top-bottom */
 body		{ margin: 0; padding: 0 var(--margin); }
 .odd body	{ margin-left: var(--gutter); }
@@ -41,7 +42,7 @@ table h1{ padding: 0 0.7em 0.7em; border-bottom: thin solid rgb(101, 119, 134); 
 .even body > footer	{ left: var(--pagenumber); }
 h3, h4	{ margin: 0; font-size: 1.3em; }
 h4		{ font-size: 1.1em; }
-h4, p > span, time, em, p ~ img path	{ color: hsla(207, 14%, 33%, 1); }
+h4, p > span, time, em, p ~ svg path	{ color: hsla(207, 14%, 33%, 1); }
 h4, time{ font-weight: normal; }
 .Icon	{ object-fit: cover; border-radius: 50%; height: 3em; margin-right: 0.5em; }
 .Icon, .Logo	{ height: 3em; }
@@ -51,8 +52,8 @@ div		{ display: flex; align-items: center; }
 
 .Logo	{ height: 3em; }
 section footer	{ flex-grow: 1; display: flex; align-items: flex-end; justify-content: space-between; line-height: 1; font-size: 1.2em; }
-section footer > img	{ height: 0.9em; }
-main img + img, em + img	{ margin-left: 1.2em; }
+section footer > svg	{ height: 0.9em; }
+main svg + svg, em + svg	{ margin-left: 1.2em; }
 em		{ font-style: normal; margin-left: 0.3em; }
 time	{ flex-grow: 1; text-align: right; }
 table	{ width: 100%; }

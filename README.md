@@ -1,3 +1,6 @@
+git clone https://github.com/mwichary/twitter-export-image-fill.git
+git clone https://github.com/twitter/twitter-text.git
+
 Firefox (not MacOS, can't get 0 margins)
 	File
 		Page Setup
