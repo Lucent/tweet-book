@@ -47,6 +47,7 @@ h4, time{ font-weight: normal; }
 .Icon	{ object-fit: cover; border-radius: 50%; height: 3em; margin-right: 0.5em; }
 .Icon, .Logo	{ height: 3em; }
 p		{ font-size: 1.7em; letter-spacing: -0.02em; margin: 0.8em 0; }
+p ~ img	{ width: 100%; }
 header	{ display: flex; justify-content: space-between; }
 div		{ display: flex; align-items: center; }
 

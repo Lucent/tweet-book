@@ -86,7 +86,13 @@ foreach ($tweets as $index=>$tweet) {
 //	if ($tweet["geo"])
 //		print_r($tweet["geo"]);
 //		//echo "<span> – ", $tweet["geo"], "</span>";
-	echo "</p>
+	echo "</p>";
+	$images = $tweet["entities"]["media"];
+	foreach ($images as $image) {
+		$url = $image["media_url_https"];
+		echo "<img src='{$url}'>\n";
+	}
+echo "
   <footer>
    <svg viewBox='0 0 13 13'><use href='#Convo'/></svg><em></em>
    <svg viewBox='0 0 17.1 11.45'><use href='#Retweet'/></svg><em>", format_int($tweet["retweet_count"]), "</em>
@@ -112,7 +118,7 @@ window.onload = function() {
 	console.log(tweets.length);
 	for (let tweet of tweets) {
 		let text = tweet.textContent;
-		tweet.innerHTML = twttr.txt.autoLink(text);
+		tweet.innerHTML = twttr.txt.autoLink(text, twttr.txt.configs.version2);
 	}
 };
  </script>
