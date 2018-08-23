@@ -12,10 +12,10 @@
    <div>Username: <input type="text" name="user" value="ptable"></div>
    <div>Start year: <input type="number" name="yearstart" min=2006 max=2018></div>
    <div>End year: <input type="number" name="yearend" min=2006 max=2018></div>
-   <div>Color: <select name="color">
-    <option value="green">Green</option>
-    <option value="red">Red</option>
-    <option value="blue">Blue</option>
+   <div>Color: <select name="hue">
+    <option value="120">Green</option>
+    <option value="0">Red</option>
+    <option value="240">Blue</option>
    </select></div>
    <div>Pages: <select name="pages">
     <option value="left">Left</option>

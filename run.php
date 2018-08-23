@@ -1,7 +1,7 @@
 <?php
 $years = range($_GET["yearstart"], $_GET["yearend"]);
 $user = $_GET["user"];
-$color = $_GET["color"];
+$hue = $_GET["hue"];
 $export_folder = "user-exports/{$user}";
 $icon_url = glob($export_folder . "/profile_media/*.jpg")[0];
 $pages = $_GET["pages"];
@@ -19,7 +19,7 @@ $account = json_decode($account_json, true)[0]["account"];
 //print_r($tweets[89]["display_text_range"][1]);
 ?>
 <!doctype html>
-<html class="<?= $pages ?> <?= $color ?>">
+<html class="<?= $pages ?>" style="--hue:<?= $hue ?>deg">
  <head>
   <link href="print.css" rel="stylesheet">
   <title>Printable Tweets Ready for Book</title>
@@ -45,11 +45,13 @@ $account = json_decode($account_json, true)[0]["account"];
    <path id="Like" d="M6.61,12.45h0C4.91,12.42,0,8,0,3.79A3.77,3.77,0,0,1,3.56,0,3.83,3.83,0,0,1,6.61,1.8,3.86,3.86,0,0,1,9.67,0a3.77,3.77,0,0,1,3.56,3.79c0,4.2-4.91,8.63-6.61,8.66ZM3.56,1A2.76,2.76,0,0,0,1,3.79c0,3.78,4.63,7.63,5.62,7.67s5.63-3.89,5.63-7.67A2.76,2.76,0,0,0,9.67,1C8,1,7.08,2.92,7.07,2.94a.51.51,0,0,1-.91,0S5.22,1,3.56,1Z"/>
   </svg>
 
+<?= file_get_contents("image/flourish.svg"); ?>
+
   <svg class="Flourish" viewBox="0 0 1135.98 1167.16">
-   <use href="image/flourish.svg#Flourish"/>
+   <use href="#Flourish"/>
   </svg>
   <svg class="Flourish" viewBox="0 0 1135.98 1167.16">
-   <use href="image/flourish.svg#Flourish"/>
+   <use href="#Flourish"/>
   </svg>
   <article>
   <h1>Tweets</h1>
@@ -118,7 +120,7 @@ echo "
  <script>
 "use strict";
 window.onload = function() {
-	if (document.getElementById("count-0"))
+	if (document.getElementById("count-0") && document.getElementById("count-0").parentNode.children === 1)
 		document.getElementById("count-0").parentNode.style.columnCount = 1;
 
 	const tweets = document.querySelectorAll("section > p");

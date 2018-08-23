@@ -13,7 +13,7 @@
 	--edge-top:			8.2em;
 	--edge-year:		6em;
 }
-a, a:visited, #TwitterLogo	{ color: #1da1f2; text-decoration: none; fill: currentColor; }
+
 .template	{ display: none; }
 html		{ margin: 0 var(--bleed); } /* this can handle left-right bleed, but not top-bottom */
 body		{ margin: 0; padding: 0 var(--margin); }
@@ -30,10 +30,12 @@ section	{ page-break-inside: avoid; break-inside: avoid; }
 section	{ box-decoration-break: clone; }
 
 th		{ text-align: left; }
-html	{ color: black; font-family: "Helvetica Neue"; }
+html	{ font-family: "Helvetica Neue"; }
+p, h3	{ color: black; /* cmyk 270% */ }
 body	{ font-size: 0.5em; }
 main	{ column-count: 2; column-gap: var(--inside-margin); }
-section	{ background-color: white; border-radius: 0.5em; padding: 1.5em; margin: var(--inside-margin) 0; background-color: white; no-rasterized-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); box-sizing: border-box; display: flex; flex-direction: column; border: 1pt solid rgb(227, 236, 232); }
+section	{ border-radius: 0.5em; padding: 1.5em; margin: var(--inside-margin) 0; background-color: white; box-sizing: border-box; display: flex; flex-direction: column; border: 1pt solid; }
+section	{ RASTERIZED-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
 table h1{ padding: 0 0.7em 0.7em; border-bottom: thin solid rgb(101, 119, 134); font-size: 3em; }
 
 .odd table h1	{ text-align: right; }
@@ -42,7 +44,7 @@ table h1{ padding: 0 0.7em 0.7em; border-bottom: thin solid rgb(101, 119, 134); 
 .even body > footer	{ left: var(--pagenumber); }
 h3, h4	{ margin: 0; font-size: 1.3em; }
 h4		{ font-size: 1.1em; }
-h4, p > span, time, em, p ~ svg path	{ color: hsla(207, 14%, 33%, 1); }
+h4, p > span, time, em, footer > svg { color: hsl(207, 14%, 43%); }
 h4, time{ font-weight: normal; }
 .Icon	{ object-fit: cover; border-radius: 50%; height: 3em; margin-right: 0.5em; }
 .Icon, .Logo	{ height: 3em; }
@@ -51,9 +53,8 @@ p ~ img	{ width: 100%; }
 header	{ display: flex; justify-content: space-between; }
 div		{ display: flex; align-items: center; }
 
-.Logo	{ height: 3em; }
 section footer	{ flex-grow: 1; display: flex; align-items: flex-end; justify-content: space-between; line-height: 1; font-size: 1.2em; }
-section footer > svg	{ height: 0.9em; }
+section footer > svg	{ height: 0.9em; fill: currentColor; }
 main svg + svg, em + svg	{ margin-left: 1.2em; }
 em		{ font-style: normal; margin-left: 0.3em; }
 time	{ flex-grow: 1; text-align: right; }
@@ -71,14 +72,11 @@ body	{ counter-reset: page -1; counter-reset: year 2012; }
 body > footer::after	{ counter-increment: page; content: counter(page); }
 abbr::after		{ position: fixed; right: 0; top: calc(var(--edge-top) + var(--edge-year) * counter(idx)); border: thin solid black; font-size: 2em; color: white; background-color: #bdcabd; padding: 0.4em 0.2em; height: var(--edge-year); writing-mode: vertical-rl; content: counter(year); letter-spacing: 0.5em; }
 
-.green				{ background-color: hsl(204deg, 33%, 97%); } /** go 100% hue degree variables with subtraction shift */
-.green .Flourish	{ fill: hsl(153deg, 19.1%, 90.8%); }
-.red				{ background-color: hsl(0deg, 33%, 97%); }
-.red .Flourish		{ fill: hsl(0deg, 19.1%, 90.8%); }
-.blue				{ background-color: hsl(240deg, 33%, 97%); }
-.blue .Flourish		{ fill: hsl(240deg, 19.1%, 90.8%); }
+.Flourish, section	{ color: hsl(var(--hue), 19%, 90%); fill: currentColor; }
+html				{ background-color: hsl(var(--hue), 33%, 97%); }
+a, a:visited, .Logo	{ color: #1da1f2; text-decoration: none; fill: currentColor; }
 
-.Flourish	{ width: calc(100% - 2 * var(--bleed)); position: fixed; z-index: -1; left: var(--bleed); top: var(--bleed); }
+.Flourish			{ width: calc(100% - 2 * var(--bleed)); position: fixed; z-index: -1; left: var(--bleed); top: var(--bleed); }
 .Flourish + .Flourish	{ top: calc(100vw - var(--bleed)); }
 
-#count-0{ font-size: 1rem; }
+#count-0			{ font-size: 1rem; }
