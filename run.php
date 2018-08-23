@@ -119,6 +119,10 @@ echo "
 <!-- <abbr></abbr> -->
  <script>
 "use strict";
+function nl2br(str) {
+    return str.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br>$2');
+}
+
 window.onload = function() {
 	if (document.getElementById("count-0") && document.getElementById("count-0").parentNode.children === 1)
 		document.getElementById("count-0").parentNode.style.columnCount = 1;
@@ -127,7 +131,7 @@ window.onload = function() {
 	console.log(tweets.length);
 	for (let tweet of tweets) {
 		let text = tweet.textContent;
-		tweet.innerHTML = twttr.txt.autoLink(text, twttr.txt.configs.version2);
+		tweet.innerHTML = nl2br(twttr.txt.autoLink(text, twttr.txt.configs.version2));
 	}
 };
  </script>
@@ -144,7 +148,7 @@ function format_tweet($text) {
 	];
 	$proc = proc_open("node tweet-parse.js", $io, $pipes);
 	$node_output = $pipes[1];*/
-	return nl2br($text);
+	return $text;
 }
 
 function format_time($date) {
