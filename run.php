@@ -53,11 +53,12 @@ $account = json_decode($account_json, true)[0]["account"];
   <svg class="Flourish" viewBox="0 0 1135.98 1167.16">
    <use href="#Flourish"/>
   </svg>
+
   <article>
-  <h1>Tweets</h1>
-  <h1><?= ($years[0] == 2007 && $user == "lucent" ? "2012" : $years[0]) . "–" . end($years) ?></h1>
-  <nav>by</nav>
-  <h2>@<?= $account["username"] ?></h2>
+   <h1>Tweets</h1>
+   <h1><?= ($years[0] == 2007 && $user == "lucent" ? "2012" : $years[0]) . "–" . end($years) ?></h1>
+   <nav>by</nav>
+   <h2><?= $account["accountDisplayName"] ?><br>@<?= $account["username"] ?></h2>
   </article>
 <?php
 $count = 0;

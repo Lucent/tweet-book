@@ -12,6 +12,7 @@
 	--inside-half:		calc(var(--inside-margin) / 2);
 	--edge-top:			8.2em;
 	--edge-year:		6em;
+	--section-padding:	0.8rem;
 }
 
 .template	{ display: none; }
@@ -34,7 +35,7 @@ html	{ font-family: "Helvetica Neue"; }
 p, h3	{ color: black; /* cmyk 270% */ }
 body	{ font-size: 0.5em; }
 main	{ column-count: 2; column-gap: var(--inside-margin); }
-section	{ border-radius: 0.5em; padding: 1.5em; margin: var(--inside-margin) 0; background-color: white; box-sizing: border-box; display: flex; flex-direction: column; border: 1pt solid; }
+section	{ border-radius: 0.5em; padding: var(--section-padding) 0; margin: var(--inside-margin) 0; background-color: white; box-sizing: border-box; display: flex; flex-direction: column; border: 1pt solid; }
 section	{ RASTERIZED-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
 table h1{ padding: 0 0.7em 0.7em; border-bottom: thin solid rgb(101, 119, 134); font-size: 3em; }
 
@@ -46,14 +47,14 @@ h3, h4	{ margin: 0; font-size: 1.3em; }
 h4		{ font-size: 1.1em; }
 h4, p > span, time, em, footer > svg { color: hsl(207, 14%, 43%); }
 h4, time{ font-weight: normal; }
-.Icon	{ object-fit: cover; border-radius: 50%; height: 3em; margin-right: 0.5em; }
+.Icon	{ object-fit: cover; border-radius: 50%; margin-right: 0.5em; }
 .Icon, .Logo	{ height: 3em; }
-p		{ font-size: 1.7em; letter-spacing: -0.02em; margin: 0.8em 0; }
+p		{ font-size: 1.7em; letter-spacing: -0.02em; margin: var(--section-padding); }
 p ~ img	{ width: 100%; }
-header	{ display: flex; justify-content: space-between; }
+header	{ display: flex; justify-content: space-between; margin: 0 var(--section-padding); }
 div		{ display: flex; align-items: center; }
 
-section footer	{ flex-grow: 1; display: flex; align-items: flex-end; justify-content: space-between; line-height: 1; font-size: 1.2em; }
+section footer	{ flex-grow: 1; display: flex; align-items: flex-end; justify-content: space-between; line-height: 1; font-size: 1.2em; margin: var(--section-padding) var(--section-padding) 0; }
 section footer > svg	{ height: 0.9em; fill: currentColor; }
 main svg + svg, em + svg	{ margin-left: 1.2em; }
 em		{ font-style: normal; margin-left: 0.3em; }
@@ -65,7 +66,7 @@ article > *		{ font-weight: normal; }
 article > h1	{ font-size: 9em; text-transform: uppercase; letter-spacing: 0.3em; margin: 0; }
 article > h1 + h1	{ font-size: 7em; }
 article > nav	{ font-size: 4em; margin-top: 20vh; }
-article > h2	{ font-size: 6em; }
+article > h2	{ font-size: 6em; margin-top: 10vh; }
 
 body > footer	{ position: fixed; bottom: var(--pagenumber); font-size: 0.8rem; }
 body	{ counter-reset: page -1; counter-reset: year 2012; }
