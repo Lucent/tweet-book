@@ -141,7 +141,7 @@ window.onload = function() {
 
 <?php
 function format_tweet($text) {
-	$text = nl2br($text);
+//	$text = nl2br($text);
 /*	$io = [
 		0 => ['pipe', 'r'], // node's stdin
 		1 => ['pipe', 'w'], // node's stdout

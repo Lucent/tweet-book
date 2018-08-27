@@ -18,8 +18,8 @@
     <option value="240">Blue</option>
    </select></div>
    <div>Pages: <select name="pages">
-    <option value="left">Left</option>
-    <option value="right">Right</option>
+    <option value="even">Even</option>
+    <option value="odd">Odd</option>
    </select></div>
    <input type="submit">
    </fieldset>
