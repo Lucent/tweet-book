@@ -1,8 +1,8 @@
 @page	{
 	size: 6.25in 9.25in;
 }
-@page :left	{ margin-left: 3cm; }
-@page :right{ margin-right: 3cm; }
+@page :left	{ margin-left: var(--gutter); }
+@page :right{ margin-right: var(--gutter); }
 :root {
 	--gutter:			0.3in;
 	--bleed:			0.125in;
