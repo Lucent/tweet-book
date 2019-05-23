@@ -23,7 +23,7 @@ $account = json_decode($account_json, true)[0]["account"];
  <head>
   <link href="print.css" rel="stylesheet">
   <title>Printable Tweets Ready for Book</title>
-  <script src="twitter-text/js/pkg/twitter-text-2.0.5.js"></script>
+  <script src="twitter-text/js/pkg/twitter-text-3.0.1.js"></script>
  </head>
  <body>
   <svg viewBox="0 0 400 400" class="template">
@@ -98,8 +98,15 @@ foreach ($tweets as $index=>$tweet) {
 	if (array_key_exists("media", $tweet["entities"])) {
 		$images = $tweet["entities"]["media"];
 		foreach ($images as $image) {
+		//	print_r($tweet);
 			$url = $image["media_url_https"];
-			echo "<img src='{$url}'>\n";
+			$id = $tweet["id"];
+			preg_match('/https\:\/\/pbs\.twimg\.com\/media\/([^\.]*)\.([^\']*)/', $url, $links);
+			if ($links)
+				$media_url = "{$export_folder}/tweet_media/{$id}-{$links[1]}.{$links[2]}";
+			else
+				$media_url = $url;
+			echo "<img src='{$media_url}'>\n";
 		}
 	}
 echo "
@@ -125,6 +132,7 @@ function nl2br(str) {
 }
 
 window.onload = function() {
+	// Make my first 2007 tweet bigger
 	if (document.getElementById("count-0") && document.getElementById("count-0").parentNode.children === 1)
 		document.getElementById("count-0").parentNode.style.columnCount = 1;
 
@@ -149,6 +157,7 @@ function format_tweet($text) {
 	];
 	$proc = proc_open("node tweet-parse.js", $io, $pipes);
 	$node_output = $pipes[1];*/
+
 	return $text;
 }
 
