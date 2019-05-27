@@ -49,13 +49,16 @@ h4, p > span, time, em, footer > svg { color: hsl(207, 14%, 43%); }
 h4, time{ font-weight: normal; }
 .Icon	{ object-fit: cover; border-radius: 50%; margin-right: 0.5em; }
 .Icon, .Logo	{ height: 3em; }
-p		{ font-size: 1.7em; letter-spacing: -0.02em; margin: var(--section-padding); }
+p		{ font-size: 1.7em; letter-spacing: -0.02em; margin: var(--section-padding); word-break: break-word; }
+.Compact p	{ margin-top: 0; }
 p ~ img	{ width: 100%; }
 header	{ display: flex; justify-content: space-between; margin: 0 var(--section-padding); }
+.Compact header	{ display: none; }
 div		{ display: flex; align-items: center; }
 
-section footer	{ flex-grow: 1; display: flex; align-items: flex-end; justify-content: space-between; line-height: 1; font-size: 1.2em; margin: var(--section-padding) var(--section-padding) 0; }
-section footer > svg	{ height: 0.9em; fill: currentColor; }
+section > footer	{ flex-grow: 1; display: flex; align-items: flex-end; justify-content: space-between; line-height: 1; font-size: 1.2em; margin: var(--section-padding) var(--section-padding) 0; }
+section > footer > svg	{ height: 0.9em; fill: currentColor; }
+.Compact section > footer > :not(time)	{ display: none; }
 main svg + svg, em + svg	{ margin-left: 1.2em; }
 em		{ font-style: normal; margin-left: 0.3em; }
 time	{ flex-grow: 1; text-align: right; }

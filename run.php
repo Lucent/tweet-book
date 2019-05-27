@@ -2,6 +2,9 @@
 $years = range($_GET["yearstart"], $_GET["yearend"]);
 $user = $_GET["user"];
 $hue = $_GET["hue"];
+$retweets = $_GET["retweets"];
+$replies = $_GET["replies"];
+$compact = $_GET["compact"];
 $export_folder = "user-exports/{$user}";
 $icon_url = glob($export_folder . "/profile_media/*.jpg")[0];
 $pages = $_GET["pages"];
@@ -19,7 +22,7 @@ $account = json_decode($account_json, true)[0]["account"];
 //print_r($tweets[89]["display_text_range"][1]);
 ?>
 <!doctype html>
-<html class="<?= $pages ?>" style="--hue:<?= $hue ?>deg">
+<html class="<?= $pages ?> <?= $compact === "on" ? "Compact" : "" ?>" style="--hue:<?= $hue ?>deg">
  <head>
   <link href="print.css" rel="stylesheet">
   <title>Printable Tweets Ready for Book</title>
@@ -62,11 +65,18 @@ $account = json_decode($account_json, true)[0]["account"];
   </article>
 <?php
 $count = 0;
+$total = 0;
 $last_monthyear = 0;
 foreach ($tweets as $index=>$tweet) {
+//	if (++$total > 631) break;
+	if ($retweets !== "on" && preg_match("/^RT @?(\w){1,15}:/", $tweet["full_text"]))
+		continue;
+	if ($replies !== "on" && $tweet["in_reply_to_user_id"])
+		continue;
 	if ($tweet["id_str"] === "182498183463714817") continue; // taylor hacking
 	$date = strtotime($tweet["created_at"]);
-	if (!in_array(date("Y", $date), $years)) continue;
+	if (!in_array(date("Y", $date), $years))
+		continue;
 	$tweet_monthyear = date("F Y", $date);
 	if ($tweet_monthyear !== $last_monthyear) {
 		$count++;
@@ -84,9 +94,7 @@ foreach ($tweets as $index=>$tweet) {
     <aside><h3>{$account['accountDisplayName']}</h3><h4>@{$account['username']}</h4></aside>
    </div>
    <svg class='Logo' viewBox='0 0 400 400'><use href='#TwitterLogo'/></svg>
-  </header>
-  <p>";
-	echo format_tweet($tweet["full_text"]);
+  </header>";
 //	if (mb_strlen(html_entity_decode($tweet["full_text"])) > 140) {
 //		echo "MAXED OUT:";
 //		print_r($tweet);
@@ -94,11 +102,11 @@ foreach ($tweets as $index=>$tweet) {
 //	if ($tweet["geo"])
 //		print_r($tweet["geo"]);
 //		//echo "<span> – ", $tweet["geo"], "</span>";
-	echo "</p>";
+	$image_urls = []; $image_srcs = [];
 	if (array_key_exists("media", $tweet["entities"])) {
 		$images = $tweet["entities"]["media"];
 		foreach ($images as $image) {
-		//	print_r($tweet);
+//			print_r($tweet);
 			$url = $image["media_url_https"];
 			$id = $tweet["id"];
 			preg_match('/https\:\/\/pbs\.twimg\.com\/media\/([^\.]*)\.([^\']*)/', $url, $links);
@@ -106,9 +114,13 @@ foreach ($tweets as $index=>$tweet) {
 				$media_url = "{$export_folder}/tweet_media/{$id}-{$links[1]}.{$links[2]}";
 			else
 				$media_url = $url;
-			echo "<img src='{$media_url}'>\n";
+			$image_urls[] = $image["url"];
+			$image_srcs[] = "<img src='{$media_url}'>\n";
 		}
 	}
+	$no_urls = str_replace($image_urls, "", $tweet["full_text"]);
+  	echo "\n <p>", format_tweet($no_urls), "</p>";
+	echo implode("", $image_srcs);
 echo "
   <footer>
    <svg viewBox='0 0 13 13'><use href='#Convo'/></svg><em></em>
