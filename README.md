@@ -3,10 +3,9 @@ git clone https://github.com/mwichary/twitter-export-image-fill.git
 git clone https://github.com/twitter/twitter-text.git
 
 Firefox (not MacOS, can't get 0 margins)
->	File
-> >		Page Setup
-> > >		Format & Options: Print Background (colors & images) [or non-black text like time will be in black]
-> > >		Margins & Header/Footer: all 0.0, blank
+>	File, Page Setup
+> >		Format & Options: Print Background (colors & images) [or non-black text like time will be in black]
+> >		Margins & Header/Footer: all 0.0, blank
 
 > 	about:config
 > > 	print.printer_Adobe_PDF.print_oddpages:		true
@@ -14,10 +13,9 @@ Firefox (not MacOS, can't get 0 margins)
 
 >	Set pages to Odd in generator form.
 
->	File
-> >		Print
-> > >		Adobe PDF, Trade paperback, Press Quality (for higher user icon DPI)
-> > >		odd.pdf
+>	File, Print
+> >		Adobe PDF, Trade paperback, Press Quality (for higher user icon DPI)
+> >		odd.pdf
 		
 >	about:config
 > >		print.printer_Adobe_PDF.print_oddpages:		false
@@ -25,10 +23,9 @@ Firefox (not MacOS, can't get 0 margins)
 	
 >	Set pages to Even in generator form.
 
->	File
-> >		Print
-> > >		Adobe PDF, Press Quality (for nice user icon)
-> > >		even.pdf
+>	File, Print
+> >		Adobe PDF, Press Quality (for nice user icon)
+> >		even.pdf
 				
 put CollatePages.js in %APPDATA%\Adobe\Acrobat\Privileged\DC\JavaScripts
 Acrobat DC
