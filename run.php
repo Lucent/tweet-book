@@ -1,5 +1,7 @@
 <?php
-$years = range($_GET["yearstart"], $_GET["yearend"]);
+//$years = range($_GET["yearstart"], $_GET["yearend"]);
+$start = strtotime($_GET["datestart"]);
+$end = strtotime($_GET["dateend"]);
 $user = $_GET["user"];
 $hue = $_GET["hue"];
 $retweets = $_GET["retweets"];
@@ -59,7 +61,7 @@ $account = json_decode($account_json, true)[0]["account"];
 
   <article>
    <h1>Tweets</h1>
-   <h1><?= ($years[0] == 2007 && $user == "lucent" ? "2012" : $years[0]) . "–" . end($years) ?></h1>
+   <h1><?= date("Y", $start) . "–" . date("Y", $end) ?></h1>
    <nav>by</nav>
    <h2><?= $account["accountDisplayName"] ?><br>@<?= $account["username"] ?></h2>
   </article>
@@ -75,14 +77,14 @@ foreach ($tweets as $index=>$tweet) {
 		continue;
 	if ($tweet["id_str"] === "182498183463714817") continue; // taylor hacking
 	$date = strtotime($tweet["created_at"]);
-	if (!in_array(date("Y", $date), $years))
+	if ($date < $start || $date > $end)
 		continue;
 	$tweet_monthyear = date("F Y", $date);
 	if ($tweet_monthyear !== $last_monthyear) {
 		$count++;
 		if ($count !== 1) echo "</main></td></tr></tbody></table>\n";
 		$tweet_year = date("Y", $date);
-		$idx = array_search($tweet_year, $years);
+		$idx = 1;//array_search($tweet_year, $years);
 		echo "<table><thead><tr><th><h1>{$tweet_monthyear}</h1></th></tr></thead><tfoot><tr><td style='counter-reset: idx {$idx}; counter-reset: year {$tweet_year}'></td></tr></tfoot><tbody><tr><td><main>";
 		$last_monthyear = $tweet_monthyear;
 	}
@@ -115,7 +117,7 @@ foreach ($tweets as $index=>$tweet) {
 			else
 				$media_url = $url;
 			$image_urls[] = $image["url"];
-			$image_srcs[] = "<img src='{$media_url}'>\n";
+			$image_srcs[] = "<img src='{$media_url}' onerror='this.remove();'>\n";
 		}
 	}
 	$no_urls = str_replace($image_urls, "", $tweet["full_text"]);
