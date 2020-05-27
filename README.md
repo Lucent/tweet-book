@@ -3,6 +3,8 @@ git clone https://github.com/mwichary/twitter-export-image-fill.git
 git clone https://github.com/twitter/twitter-text.git
 
 Firefox (not MacOS, can't get 0 margins)
+All this can be bypassed when Firefox supports @page :left, :right. https://bugzilla.mozilla.org/show_bug.cgi?id=813187
+
 >	File, Page Setup
 > >		Format & Options: Print Background (colors & images) [or non-black text like time will be in black]
 > >		Margins & Header/Footer: all 0.0, blank
