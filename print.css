@@ -31,13 +31,13 @@ section	{ page-break-inside: avoid; break-inside: avoid; }
 section	{ box-decoration-break: clone; }
 
 th		{ text-align: left; }
-html	{ font-family: "Helvetica Neue"; }
+html	{ font-family: "Helvetica Neue LT Pro"; }
 p, h3	{ color: black; /* cmyk 270% */ }
 body	{ font-size: 0.5em; }
 main	{ column-count: 2; column-gap: var(--inside-margin); }
-section	{ border-radius: 0.5em; padding: var(--section-padding) 0; margin: var(--inside-margin) 0; background-color: white; box-sizing: border-box; display: flex; flex-direction: column; border: 1pt solid; }
+section	{ border-radius: 0.5em; padding: var(--section-padding) 0; margin: 0 0 var(--inside-margin); background-color: white; box-sizing: border-box; display: flex; flex-direction: column; border: 1pt solid; }
 section	{ RASTERIZED-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-table h1{ padding: 0 0.7em 0.7em; border-bottom: thin solid rgb(101, 119, 134); font-size: 3em; }
+table h1{ padding: 0 0.7em 0.7em; border-bottom: thin solid rgb(101, 119, 134); font-size: 3em; margin-bottom: var(--inside-margin); }
 
 .odd table h1	{ text-align: right; }
 .even table h1	{ text-align: left; }
@@ -45,22 +45,22 @@ table h1{ padding: 0 0.7em 0.7em; border-bottom: thin solid rgb(101, 119, 134); 
 .even body > footer	{ left: var(--pagenumber); }
 h3, h4	{ margin: 0; font-size: 1.3em; }
 h4		{ font-size: 1.1em; }
-h4, p > span, time, em, footer > svg { color: hsl(207, 14%, 43%); }
+h4, p > span, time, em, footer svg { color: hsl(207, 14%, 43%); }
 h4, time{ font-weight: normal; }
 .Icon	{ object-fit: cover; border-radius: 50%; margin-right: 0.5em; }
 .Icon, .Logo	{ height: 3em; }
-p		{ font-size: 1.7em; letter-spacing: -0.02em; margin: var(--section-padding); word-break: break-word; }
+p		{ font-size: 1.5em; letter-spacing: -0.01em; margin: var(--section-padding); word-break: break-word; line-height: 1.3; }
 .Compact p	{ margin-top: 0; }
 p ~ img	{ width: 100%; }
 header	{ display: flex; justify-content: space-between; margin: 0 var(--section-padding); }
 .Compact header	{ display: none; }
 div		{ display: flex; align-items: center; }
 
-section > footer	{ flex-grow: 1; display: flex; align-items: flex-end; justify-content: space-between; line-height: 1; font-size: 1.2em; margin: var(--section-padding) var(--section-padding) 0; }
-section > footer > svg	{ height: 0.9em; fill: currentColor; }
+section > footer	{ flex-grow: 1; display: flex; align-items: flex-end; justify-content: space-between; line-height: 1; font-size: 1.2em; margin: 0 var(--section-padding); }
+section > footer svg	{ height: 0.9em; fill: currentColor; }
 .Compact section > footer > :not(time)	{ display: none; }
-main svg + svg, em + svg	{ margin-left: 1.2em; }
-em		{ font-style: normal; margin-left: 0.3em; }
+main a + a, em + a	{ margin-left: 1.2em; }
+em		{ font-style: normal; margin-left: 0.3em; vertical-align: text-top; }
 time	{ flex-grow: 1; text-align: right; }
 table	{ width: 100%; }
 
@@ -79,6 +79,8 @@ abbr::after		{ position: fixed; right: 0; top: calc(var(--edge-top) + var(--edge
 .Flourish, section	{ color: hsl(var(--hue), 19%, 90%); fill: currentColor; }
 html				{ background-color: hsl(var(--hue), 33%, 97%); }
 a, a:visited, .Logo	{ color: #1da1f2; text-decoration: none; fill: currentColor; }
+a:hover, a:focus	{ text-decoration: underline; }
+time a	{ color: inherit ! important; }
 
 .Flourish			{ width: calc(100% - 2 * var(--bleed)); position: fixed; z-index: -1; left: var(--bleed); top: var(--bleed); }
 .Flourish + .Flourish	{ top: calc(100vw - var(--bleed)); }

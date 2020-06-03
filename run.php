@@ -1,5 +1,4 @@
 <?php
-//$years = range($_GET["yearstart"], $_GET["yearend"]);
 $start = strtotime($_GET["datestart"]);
 $end = strtotime($_GET["dateend"]);
 $user = $_GET["user"];
@@ -8,16 +7,16 @@ $retweets = $_GET["retweets"];
 $replies = $_GET["replies"];
 $compact = $_GET["compact"];
 $export_folder = "user-exports/{$user}";
-$icon_url = glob($export_folder . "/profile_media/*.jpg")[0];
+$icon_url = glob($export_folder . "/data/profile_media/*.jpg")[1];
 $pages = $_GET["pages"];
 date_default_timezone_set("America/New_York");
 
-$tweets_js = file_get_contents("{$export_folder}/tweet.js");
+$tweets_js = file_get_contents("{$export_folder}/data/tweet.js");
 $tweets_json = substr($tweets_js, strlen("window.YTD.tweet.part0 = "));
 $tweets = json_decode($tweets_json, true);
 usort($tweets, "time_sort");
 
-$account_js = file_get_contents("{$export_folder}/account.js");
+$account_js = file_get_contents("{$export_folder}/data/account.js");
 $account_json = substr($account_js, strlen("window.YTD.account.part0 = "));
 $account = json_decode($account_json, true)[0]["account"];
 
@@ -28,7 +27,7 @@ $account = json_decode($account_json, true)[0]["account"];
  <head>
   <link href="print.css" rel="stylesheet">
   <title>Printable Tweets Ready for Book</title>
-  <script src="twitter-text/js/pkg/twitter-text-3.0.1.js"></script>
+  <script src="twitter-text/js/pkg/twitter-text-3.1.0.js"></script>
  </head>
  <body>
   <svg viewBox="0 0 400 400" class="template">
@@ -70,10 +69,12 @@ $count = 0;
 $total = 0;
 $last_monthyear = 0;
 foreach ($tweets as $index=>$tweet) {
+	$tweet = $tweet["tweet"];
+//	print_r($tweet);
 //	if (++$total > 631) break;
 	if ($retweets !== "on" && preg_match("/^RT @?(\w){1,15}:/", $tweet["full_text"]))
 		continue;
-	if ($replies !== "on" && $tweet["in_reply_to_user_id"])
+	if ($replies !== "on" && array_key_exists("in_reply_to_user_id", $tweet))
 		continue;
 	if ($tweet["id_str"] === "182498183463714817") continue; // taylor hacking
 	$date = strtotime($tweet["created_at"]);
@@ -113,7 +114,7 @@ foreach ($tweets as $index=>$tweet) {
 			$id = $tweet["id"];
 			preg_match('/https\:\/\/pbs\.twimg\.com\/media\/([^\.]*)\.([^\']*)/', $url, $links);
 			if ($links)
-				$media_url = "{$export_folder}/tweet_media/{$id}-{$links[1]}.{$links[2]}";
+				$media_url = "{$export_folder}/data/tweet_media/{$id}-{$links[1]}.{$links[2]}";
 			else
 				$media_url = $url;
 			$image_urls[] = $image["url"];
@@ -125,11 +126,11 @@ foreach ($tweets as $index=>$tweet) {
 	echo implode("", $image_srcs);
 echo "
   <footer>
-   <svg viewBox='0 0 13 13'><use href='#Convo'/></svg><em></em>
-   <svg viewBox='0 0 17.1 11.45'><use href='#Retweet'/></svg><em>", format_int($tweet["retweet_count"]), "</em>
-   <svg viewBox='0 0 13.23 12.45'><use href='#Like'/></svg><em>", format_int($tweet["favorite_count"]), "</em>
+   <a href='//twitter.com/intent/tweet?in_reply_to={$tweet["id_str"]}'><svg viewBox='0 0 13 13'><use href='#Convo'/></svg><em></em></a>
+   <a href='//twitter.com/intent/retweet?tweet_id={$tweet["id_str"]}'><svg viewBox='0 0 17.1 11.45'><use href='#Retweet'/></svg><em>", format_int($tweet["retweet_count"]), "</em></a>
+   <a href='//twitter.com/intent/like?tweet_id={$tweet["id_str"]}'><svg viewBox='0 0 13.23 12.45'><use href='#Like'/></svg><em>", format_int($tweet["favorite_count"]), "</em></a>
    <!-- <svg viewBox='0 0 13.16 11.93'><use href='#Mail'/></svg><em> </em> -->
-   <time>", format_time($tweet["created_at"]), "</time>
+   <time><a href='//twitter.com/{$account["username"]}/status/{$tweet["id_str"]}'>", format_time($tweet["created_at"]), "</a></time>
   </footer>
  </section>\n";
 }
@@ -180,12 +181,12 @@ function format_time($date) {
 }
 
 function format_int($number) {
-	if ($number !== "0.0")
+	if ($number != 0)
 		return round($number);
 	else
 		return " ";
 }
 
 function time_sort($a, $b) {
-	return strtotime($a["created_at"]) > strtotime($b["created_at"]);
+	return strtotime($a["tweet"]["created_at"]) > strtotime($b["tweet"]["created_at"]);
 }

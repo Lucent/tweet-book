@@ -40,6 +40,8 @@ Acrobat DC
 >	Confirm gutter is bigger in the middle than outside
 
 >	Remove Page number 0 from Title
+>	Add and name footers, left for even and right for odd, 0.4 from bottom 0.5 from left/right.
+>	If there's a weird unembeddable font on last page, extract and resave in Illustrator.
 
 >	Set Deeper black, 270%? Figure out bleed/margin/padding and svg img alignment and 100% width to stay out of bleed
 
