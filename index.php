@@ -9,9 +9,9 @@
  <body>
   <form method="get" action="run.php">
    <fieldset>
-   <div>Username: <input type="text" name="user" value="LucidiaLyrae"></div>
-   <div>Start year: <input type="date" name="datestart"></div>
-   <div>End year: <input type="date" name="dateend"></div>
+   <div>Username: <input type="text" name="user" value="Lucent"></div>
+   <div>Start date: <input type="date" name="datestart" value="2012-01-01"></div>
+   <div>End date: <input type="date" name="dateend" value="2012-06-01"></div>
    <div>Hide name: <input type="checkbox" name="compact"></div>
    <div>Retweets: <input type="checkbox" name="retweets"></div>
    <div>Replies: <input type="checkbox" name="replies"></div>
