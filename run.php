@@ -64,6 +64,7 @@ $account = json_decode($account_json, true)[0]["account"];
    <nav>by</nav>
    <h2><?= $account["accountDisplayName"] ?><br>@<?= $account["username"] ?></h2>
   </article>
+  <article></article>
 <?php
 $count = 0;
 $total = 0;
@@ -148,7 +149,7 @@ function nl2br(str) {
 
 window.onload = function() {
 	// Make my first 2007 tweet bigger
-	if (document.getElementById("count-0") && document.getElementById("count-0").parentNode.children === 1)
+	if (document.getElementById("count-0") && document.getElementById("count-0").parentNode.children.length === 1)
 		document.getElementById("count-0").parentNode.style.columnCount = 1;
 
 	const tweets = document.querySelectorAll("section > p");

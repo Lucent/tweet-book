@@ -15,6 +15,10 @@
 	--section-padding:	0.8rem;
 }
 
+#count-0	{
+	font-size: 1rem;
+	--section-padding:	1.6rem;
+}
 .template	{ display: none; }
 html		{ margin: 0 var(--bleed); } /* this can handle left-right bleed, but not top-bottom */
 body		{ margin: 0; padding: 0 var(--margin); }
@@ -24,10 +28,10 @@ thead h1	{ margin: calc(var(--margin) + var(--bleed)) var(--inside-half) 0; padd
 tfoot td	{ height: calc(var(--margin) + var(--bleed) - var(--inside-margin)); }
 
 table, tr, th, td, thead, tbody, tfoot	{ margin: 0; padding: 0; border: 0; }
-*		{ -webkit-print-color-adjust: exact; color-adjust: exact; }
+*		{ color-adjust: exact; }
 
-table	{ page-break-after: avoid; break-after: avoid; page-break-before: always; }
-section	{ page-break-inside: avoid; break-inside: avoid; }
+table	{ break-after: avoid; page-break-before: always; }
+section	{ break-inside: avoid; }
 section	{ box-decoration-break: clone; }
 
 th		{ text-align: left; }
@@ -41,8 +45,8 @@ table h1{ padding: 0 0.7em 0.7em; border-bottom: thin solid rgb(101, 119, 134); 
 
 .odd table h1	{ text-align: right; }
 .even table h1	{ text-align: left; }
-.odd body > footer	{ right: var(--pagenumber); }
-.even body > footer	{ left: var(--pagenumber); }
+/*.odd body > footer	{ right: var(--pagenumber); }
+.even body > footer	{ left: var(--pagenumber); }*/
 h3, h4	{ margin: 0; font-size: 1.3em; }
 h4		{ font-size: 1.1em; }
 h4, p > span, time, em, footer svg { color: hsl(207, 14%, 43%); }
@@ -56,7 +60,7 @@ header	{ display: flex; justify-content: space-between; margin: 0 var(--section-
 .Compact header	{ display: none; }
 div		{ display: flex; align-items: center; }
 
-section > footer	{ flex-grow: 1; display: flex; align-items: flex-end; justify-content: space-between; line-height: 1; font-size: 1.2em; margin: 0 var(--section-padding); }
+section > footer	{ flex-grow: 1; display: flex; align-items: center; justify-content: space-between; line-height: 1; font-size: 1.2em; margin: 0 var(--section-padding); }
 section > footer svg	{ height: 0.9em; fill: currentColor; }
 .Compact section > footer > :not(time)	{ display: none; }
 main a + a, em + a	{ margin-left: 1.2em; }
@@ -64,7 +68,7 @@ em		{ font-style: normal; margin-left: 0.3em; vertical-align: text-top; }
 time	{ flex-grow: 1; text-align: right; }
 table	{ width: 100%; }
 
-article	{ display: flex; flex-direction: column; justify-content: center; height: 99vh; text-align: center; font-family: "Palatino Linotype"; }
+article	{ display: flex; flex-direction: column; justify-content: center; height: 99vh; text-align: center; font-family: "Palatino Linotype"; page-break-after: always; }
 article > *		{ font-weight: normal; }
 article > h1	{ font-size: 9em; text-transform: uppercase; letter-spacing: 0.3em; margin: 0; }
 article > h1 + h1	{ font-size: 7em; }
@@ -73,7 +77,7 @@ article > h2	{ font-size: 6em; margin-top: 10vh; }
 
 body > footer	{ position: fixed; bottom: var(--pagenumber); font-size: 0.8rem; }
 body	{ counter-reset: page -1; counter-reset: year 2012; }
-body > footer::after	{ counter-increment: page; content: counter(page); }
+/*body > footer::after	{ counter-increment: page; content: counter(page); }*/
 abbr::after		{ position: fixed; right: 0; top: calc(var(--edge-top) + var(--edge-year) * counter(idx)); border: thin solid black; font-size: 2em; color: white; background-color: #bdcabd; padding: 0.4em 0.2em; height: var(--edge-year); writing-mode: vertical-rl; content: counter(year); letter-spacing: 0.5em; }
 
 .Flourish, section	{ color: hsl(var(--hue), 19%, 90%); fill: currentColor; }
