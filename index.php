@@ -1,3 +1,8 @@
+<?php
+$home_dir = trim(`wslpath "$(wslvar USERPROFILE)"`);
+$exports = $home_dir . "/OneDrive/Documents/Backup/Twitter";
+$export_dirs = glob($exports . "/*", GLOB_ONLYDIR);
+?>
 <!doctype html>
 <html>
  <head>
@@ -9,7 +14,13 @@
  <body>
   <form method="get" action="run.php">
    <fieldset>
-   <div>Username: <input type="text" name="user" value="Lucent"></div>
+   <div>Username: <select name="user">
+<?php
+foreach ($export_dirs as $dir) {
+	echo "<option>$dir</option>";
+}
+?>
+   </select>
    <div>Start date: <input type="date" name="datestart" value="2012-01-01"></div>
    <div>End date: <input type="date" name="dateend" value="2012-06-01"></div>
    <div>Hide name: <input type="checkbox" name="compact"></div>

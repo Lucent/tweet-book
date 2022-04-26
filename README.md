@@ -46,7 +46,6 @@ Acrobat DC
 >	Inspect with View, Page Display, Two Page Scrolling & Show Cover Page in Two Page View
 >	Confirm gutter is smaller in the middle, opposite of a book
 
->	Remove Page number 0 from Title
 >	Add and name footers, Arial, 10pt
 >	>	"left": Page Range Options: even 3 onward, bottom: 0.45, left/right: 0.35.
 >	>	"Right": Page Range Options: odd 3 onward, bottom: 0.45, left/right: 0.35.

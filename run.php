@@ -1,13 +1,17 @@
 <?php
 $start = strtotime($_GET["datestart"]);
 $end = strtotime($_GET["dateend"]);
-$user = $_GET["user"];
+$export_folder = $_GET["user"];
 $hue = $_GET["hue"];
 $retweets = $_GET["retweets"];
 $replies = $_GET["replies"];
 $compact = $_GET["compact"];
-$export_folder = "user-exports/{$user}";
-$icon_url = glob($export_folder . "/data/profile_media/*.jpg")[1];
+$profile_js = file_get_contents($export_folder . "/data/profile.js");
+$profile_json = substr($profile_js, strlen("window.YTD.profile.part0 = "));
+$profile_info = json_decode($profile_json, true);
+//$profile_filename = basename($profile_info[0]["profile"]["avatarMediaUrl"]);
+//$icon_url = glob($export_folder . "/data/profile_media/*" . $profile_filename)[0];
+$icon_url = $profile_info[0]["profile"]["avatarMediaUrl"];
 $pages = $_GET["pages"];
 date_default_timezone_set("America/New_York");
 
