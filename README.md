@@ -6,8 +6,6 @@ Printers & Scanners > Print Server Properties > Create a new form > Trade paperb
 
 git clone https://github.com/mwichary/twitter-export-image-fill.git
 
-git clone https://github.com/twitter/twitter-text.git
-
 Firefox (not MacOS, can't get 0 margins)
 All this can be bypassed when Firefox supports @page :left, :right. https://bugzilla.mozilla.org/show_bug.cgi?id=813187
 
