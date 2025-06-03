@@ -1,4 +1,4 @@
-Last Firefox with proper orphan control: https://ftp.mozilla.org/pub/firefox/releases/77.0.1/win64/en-US/Firefox%20Setup%2077.0.1.exe
+Firefox orphan control was broken after 77.0.1 and then fixed before 127.0.
 
 Install font/*
 

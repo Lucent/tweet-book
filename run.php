@@ -15,14 +15,18 @@ $icon_url = $profile_info[0]["profile"]["avatarMediaUrl"];
 $pages = $_GET["pages"];
 date_default_timezone_set("America/New_York");
 
-$tweets_js = file_get_contents("{$export_folder}/data/tweet.js");
-$tweets_json = substr($tweets_js, strlen("window.YTD.tweet.part0 = "));
+$tweets_js = file_get_contents("{$export_folder}/data/tweets.js");
+$tweets_json = $tweets_js;//substr($tweets_js, strlen("window.YTD.tweet.part0 = "));
 $tweets = json_decode($tweets_json, true);
 usort($tweets, "time_sort");
 
 $account_js = file_get_contents("{$export_folder}/data/account.js");
 $account_json = substr($account_js, strlen("window.YTD.account.part0 = "));
 $account = json_decode($account_json, true)[0]["account"];
+
+function data_uri($file, $hue) {
+	return "data:image/svg+xml," . str_replace(["#","<",">","\n","HUE_COLOR"], ["%23","%3C","%3E","",$hue], file_get_contents($file));
+}
 
 //print_r($tweets[89]["display_text_range"][1]);
 ?>
@@ -32,6 +36,9 @@ $account = json_decode($account_json, true)[0]["account"];
   <link href="print.css" rel="stylesheet">
   <title>Printable Tweets Ready for Book</title>
   <script src="twitter-text/js/pkg/twitter-text-3.1.0.js"></script>
+  <style>
+html	{ background-image: url('<?= data_uri("image/flourish.svg", $hue) ?>'); }
+  </style>
  </head>
  <body>
   <svg viewBox="0 0 400 400" class="template">
@@ -52,7 +59,7 @@ $account = json_decode($account_json, true)[0]["account"];
   <svg viewBox="0 0 13.23 12.45" class="template">
    <path id="Like" d="M6.61,12.45h0C4.91,12.42,0,8,0,3.79A3.77,3.77,0,0,1,3.56,0,3.83,3.83,0,0,1,6.61,1.8,3.86,3.86,0,0,1,9.67,0a3.77,3.77,0,0,1,3.56,3.79c0,4.2-4.91,8.63-6.61,8.66ZM3.56,1A2.76,2.76,0,0,0,1,3.79c0,3.78,4.63,7.63,5.62,7.67s5.63-3.89,5.63-7.67A2.76,2.76,0,0,0,9.67,1C8,1,7.08,2.92,7.07,2.94a.51.51,0,0,1-.91,0S5.22,1,3.56,1Z"/>
   </svg>
-
+<!--
 <?= file_get_contents("image/flourish.svg"); ?>
 
   <svg class="Flourish" viewBox="0 0 1135.98 1167.16">
@@ -61,7 +68,7 @@ $account = json_decode($account_json, true)[0]["account"];
   <svg class="Flourish" viewBox="0 0 1135.98 1167.16">
    <use href="#Flourish"/>
   </svg>
-
+-->
   <article>
    <h1>Tweets</h1>
    <h1><?= date("Y", $start) . "–" . date("Y", $end) ?></h1>
@@ -101,7 +108,8 @@ foreach ($tweets as $index=>$tweet) {
     <img class='Icon' src='{$icon_url}'>
     <aside><h3>{$account['accountDisplayName']}</h3><h4>@{$account['username']}</h4></aside>
    </div>
-   <svg class='Logo' viewBox='0 0 400 400'><use href='#TwitterLogo'/></svg>
+   <time><a href='//twitter.com/{$account["username"]}/status/{$tweet["id_str"]}'>", format_time($tweet["created_at"]), "</a></time>
+   <!-- <svg class='Logo' viewBox='0 0 400 400'><use href='#TwitterLogo'/></svg> -->
   </header>";
 //	if (mb_strlen(html_entity_decode($tweet["full_text"])) > 140) {
 //		echo "MAXED OUT:";
@@ -130,13 +138,13 @@ foreach ($tweets as $index=>$tweet) {
   	echo "\n <p>", format_tweet($no_urls), "</p>";
 	echo implode("", $image_srcs);
 echo "
-  <footer>
+<!--  <footer>
    <a href='//twitter.com/intent/tweet?in_reply_to={$tweet["id_str"]}'><svg viewBox='0 0 13 13'><use href='#Convo'/></svg><em></em></a>
    <a href='//twitter.com/intent/retweet?tweet_id={$tweet["id_str"]}'><svg viewBox='0 0 17.1 11.45'><use href='#Retweet'/></svg><em>", format_int($tweet["retweet_count"]), "</em></a>
    <a href='//twitter.com/intent/like?tweet_id={$tweet["id_str"]}'><svg viewBox='0 0 13.23 12.45'><use href='#Like'/></svg><em>", format_int($tweet["favorite_count"]), "</em></a>
-   <!-- <svg viewBox='0 0 13.16 11.93'><use href='#Mail'/></svg><em> </em> -->
+   <svg viewBox='0 0 13.16 11.93'><use href='#Mail'/></svg><em> </em>
    <time><a href='//twitter.com/{$account["username"]}/status/{$tweet["id_str"]}'>", format_time($tweet["created_at"]), "</a></time>
-  </footer>
+  </footer> -->
  </section>\n";
 }
 ?>
