@@ -13,41 +13,23 @@ All this can be bypassed when Firefox supports @page :left, :right. https://bugz
 > >		Format & Options: Print Background (colors & images) [or non-black text like time will be in black]
 > >		Margins & Header/Footer: all 0.0, blank
 
-> 	about:config
-> > 	print.printer_Adobe_PDF.print_oddpages:		true
-> > 	print.printer_Adobe_PDF.print_evenpages:	false
-
 >	Set pages to Odd in generator form.
-
 >	File, Print
 > >		Adobe PDF, Trade paperback, Press Quality (for higher user icon DPI)
 > >		odd.pdf
 		
->	about:config
-> >		print.printer_Adobe_PDF.print_oddpages:		false
-> >		print.printer_Adobe_PDF.print_evenpages:	true
-	
 >	Set pages to Even in generator form.
-
 >	File, Print
 > >		Adobe PDF, Press Quality (for nice user icon)
 > >		even.pdf
-				
-put CollatePages.js in C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\Javascripts
-Acrobat DC
->	open odd.pdf
->	Tools, JavaScript, Debugger, paste `app.addToolButton` line, Shift+Enter
->	Tools, Add-on Tools, Collate
->	Select even.pdf
->	Save as complete.pdf
+
+>   pdftk A=odd.pdf B=even.pdf shuffle Aodd Beven output interleaved.pdf
 
 >	Inspect with View, Page Display, Two Page Scrolling & Show Cover Page in Two Page View
->	Confirm gutter is smaller in the middle, opposite of a book
 
 >	Add and name footers, Arial, 10pt
 >	>	"left": Page Range Options: even 3 onward, bottom: 0.45, left/right: 0.35.
 >	>	"Right": Page Range Options: odd 3 onward, bottom: 0.45, left/right: 0.35.
->	If there's a weird unembeddable font on last page, extract and resave in Illustrator.
 
 >	Set Deeper black, 270%? Figure out bleed/margin/padding and svg img alignment and 100% width to stay out of bleed
 

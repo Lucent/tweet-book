@@ -106,7 +106,7 @@ foreach ($tweets as $index=>$tweet) {
   <header>
    <div>
     <img class='Icon' src='{$icon_url}'>
-    <aside><h3>{$account['accountDisplayName']}</h3><h4>@{$account['username']}</h4></aside>
+    <aside><h3>{$account['accountDisplayName']}</h3><!--<h4>@{$account['username']}</h4>--></aside>
    </div>
    <time><a href='//twitter.com/{$account["username"]}/status/{$tweet["id_str"]}'>", format_time($tweet["created_at"]), "</a></time>
    <!-- <svg class='Logo' viewBox='0 0 400 400'><use href='#TwitterLogo'/></svg> -->

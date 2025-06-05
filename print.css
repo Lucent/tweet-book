@@ -8,7 +8,7 @@
 	--gutter:			0.3in;
 	--bleed:			0.125in;
 	--margin:			0.3in;
-	--section-padding:	0.11in;
+	--section-padding:	0.08in;
 }
 
 #count-0	{
@@ -20,8 +20,9 @@ html		{ margin: 0 var(--bleed); } /* this can handle left-right bleed, but not t
 body		{ margin: 0; padding: 0 var(--margin); }
 .odd body	{ margin-left: var(--gutter); }
 .even body	{ margin-right: var(--gutter); }
-thead h1	{ margin: calc(var(--margin) + var(--bleed)) var(--section-padding) 0; margin-bottom: var(--section-padding) }
-table h1	{ padding: 0 var(--section-padding) var(--section-padding); border-bottom: thin solid rgb(101, 119, 134); font-size: 3em; }
+thead th	{ padding: 0; overflow: visible; }
+thead h1	{ margin: calc(var(--margin) + var(--bleed)) var(--section-padding) 0; height: 0; white-space: nowrap; font-family: "HelveticaNeueLT Pro 53 Ex"; text-transform: uppercase; font-weight: normal; letter-spacing: 0.3em; }
+table h1	{ font-size: 2.5em; padding-inline: var(--section-padding); }
 tfoot td	{ height: calc(var(--margin) + var(--bleed) - var(--section-padding)); }
 
 table, tr, th, td, thead, tbody, tfoot	{ margin: 0; padding: 0; border: 0; }
@@ -31,7 +32,6 @@ table	{ page-break-before: always; }
 section	{ break-inside: avoid; }
 section	{ box-decoration-break: clone; }
 
-th		{ text-align: left; }
 html	{ font-family: "Helvetica Neue LT Pro"; }
 p, h3	{ color: black; /* cmyk 270% */ }
 body	{ font-size: 0.5em; }
@@ -39,15 +39,15 @@ main	{ column-count: 2; column-gap: var(--section-padding); }
 section	{ border-radius: 0.5em; border: 1pt solid; padding-top: var(--section-padding); margin: 0 0 var(--section-padding); background-color: white; box-sizing: border-box; display: flex; flex-direction: column; }
 section	{ RASTERIZED-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
 
-.odd table h1	{ text-align: right; }
-.even table h1	{ text-align: left; }
+.odd table h1	{ text-align: left; transform-origin: top right; transform: rotate(90deg) translateX(100%) translateY(-1.6em); }
+.even table h1	{ text-align: right; transform-origin: top left; transform: rotate(-90deg) translateX(-100%) translateY(-1.6em); }
 h3		{ margin: 0; font-size: 1.5em; }
 h4		{ margin: 0; font-size: 1.25em; font-family: "HelveticaNeueLT Pro 65 Md"; }
 h4, p > span, time, em, footer svg { color: hsl(207, 14%, 43%); }
 h4, time{ font-weight: normal; }
 .Icon	{ object-fit: cover; border-radius: 50%; margin-right: 0.5em; }
-.Icon, .Logo	{ height: 3em; }
-p		{ font-size: 1.5em; letter-spacing: -0.01em; margin: calc(var(--section-padding) * 0.6) var(--section-padding) var(--section-padding); word-break: break-word; line-height: 1.3; }
+.Icon, .Logo	{ height: 1.5em; }
+p		{ font-size: 1.5em; letter-spacing: -0.01em; margin: calc(var(--section-padding) * 0.6) var(--section-padding) var(--section-padding); word-break: break-word; line-height: 1.2; }
 .Compact p	{ margin-top: 0; }
 p ~ img	{ width: 100%; }
 header	{ display: flex; justify-content: space-between; margin: 0 var(--section-padding); }
