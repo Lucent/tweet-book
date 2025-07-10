@@ -92,7 +92,7 @@ foreach ($tweets as $index=>$tweet) {
 	$date = strtotime($tweet["created_at"]);
 	if ($date < $start || $date > $end)
 		continue;
-	$tweet_monthyear = date("F Y", $date);
+	$tweet_monthyear = $pages === "even" ? date("F Y", $date) : date("Y F", $date);
 	if ($tweet_monthyear !== $last_monthyear) {
 		$count++;
 		if ($count !== 1) echo "</main></td></tr></tbody></table>\n";
